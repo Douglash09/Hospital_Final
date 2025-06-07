@@ -1,0 +1,197 @@
+﻿@page
+@model HH.Pages.paginas.pages4Model
+@{
+    ViewData["Title"] = "Registro de Citas";
+}
+<h2>Registro de Citas</h2>
+
+<form id="citaForm" class="form-container">
+    <label for="Paciente">Paciente:</label>
+    <input type="text" id="Paciente" name="Paciente" required />
+
+    <label for="Fecha">Fecha:</label>
+    <input type="date" id="Fecha" name="Fecha" required />
+
+    <label for="Hora">Hora:</label>
+    <input type="time" id="Hora" name="Hora" required />
+
+    <label for="Doctor">Doctor:</label>
+    <input type="text" id="Doctor" name="Doctor" required />
+
+    <label for="Motivo">Motivo:</label>
+    <textarea id="Motivo" name="Motivo" required></textarea>
+
+    <input type="hidden" id="indiceEditar" value="-1" />
+
+    <div class="button-group">
+        <button type="button" class="btn agregar" onclick="agregarOEditarCita()">Guardar</button>
+        <button type="button" class="btn cancelar" onclick="cancelarEdicion()">Cancelar</button>
+    </div>
+</form>
+
+<h2>Lista de Citas</h2>
+<table id="tablaCitas" border="1">
+    <thead>
+        <tr>
+            <th>Paciente</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Doctor</th>
+            <th>Motivo</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script>
+    document.addEventListener("DOMContentLoaded", mostrarCitas);
+
+    function agregarOEditarCita() {
+        let indice = document.getElementById("indiceEditar").value;
+        let cita = {
+            paciente: document.getElementById("Paciente").value,
+            fecha: document.getElementById("Fecha").value,
+            hora: document.getElementById("Hora").value,
+            doctor: document.getElementById("Doctor").value,
+            motivo: document.getElementById("Motivo").value
+        };
+
+        let citas = JSON.parse(localStorage.getItem("citas")) || [];
+
+        if (indice === "-1") {
+            citas.push(cita);
+        } else {
+            citas[indice] = cita;
+            document.getElementById("indiceEditar").value = "-1";
+        }
+
+        localStorage.setItem("citas", JSON.stringify(citas));
+        mostrarCitas();
+        limpiarFormulario();
+    }
+
+    function mostrarCitas() {
+        let citas = JSON.parse(localStorage.getItem("citas")) || [];
+        let tbody = document.querySelector("#tablaCitas tbody");
+        tbody.innerHTML = "";
+        citas.forEach((c, index) => {
+            let fila = `<tr>
+                            <td>${c.paciente}</td>
+                            <td>${c.fecha}</td>
+                            <td>${c.hora}</td>
+                            <td>${c.doctor}</td>
+                            <td>${c.motivo}</td>
+                            <td>
+                                <button class="btn editar" onclick="editarCita(${index})">Editar</button>
+                                <button class="btn eliminar" onclick="eliminarCita(${index})">Eliminar</button>
+                            </td>
+                        </tr>`;
+            tbody.innerHTML += fila;
+        });
+    }
+
+    function editarCita(index) {
+        let citas = JSON.parse(localStorage.getItem("citas"));
+        let cita = citas[index];
+
+        document.getElementById("Paciente").value = cita.paciente;
+        document.getElementById("Fecha").value = cita.fecha;
+        document.getElementById("Hora").value = cita.hora;
+        document.getElementById("Doctor").value = cita.doctor;
+        document.getElementById("Motivo").value = cita.motivo;
+        document.getElementById("indiceEditar").value = index;
+    }
+
+    function eliminarCita(index) {
+        let citas = JSON.parse(localStorage.getItem("citas"));
+        citas.splice(index, 1);
+        localStorage.setItem("citas", JSON.stringify(citas));
+        mostrarCitas();
+    }
+
+    function limpiarFormulario() {
+        document.getElementById("citaForm").reset();
+        document.getElementById("indiceEditar").value = "-1";
+    }
+
+    function cancelarEdicion() {
+        limpiarFormulario();
+    }
+</script>
+
+<style>
+    .form-container {
+        width: 50%;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+    }
+
+    label {
+        display: block;
+        margin-top: 10px;
+    }
+
+    input, select, textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .button-group {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+    }
+
+    .btn {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .agregar {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .cancelar {
+        background-color: #757575;
+        color: white;
+    }
+
+    .editar {
+        background-color: #FFC107;
+        color: white;
+    }
+
+    .eliminar {
+        background-color: #F44336;
+        color: white;
+    }
+
+    table {
+        width: 80%;
+        margin: auto;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>
+

@@ -1,0 +1,27 @@
+@model Hospital_Final.Models.Cita
+
+<h2>Crear Cita</h2>
+
+<form asp-action="Create">
+    <div>
+        <label asp-for="PacienteId">Paciente</label>
+        <select asp-for="PacienteId" asp-items="ViewBag.Pacientes"></select>
+    </div>
+    <div>
+        <label asp-for="Fecha"></label>
+        <input asp-for="Fecha" type="date" />
+    </div>
+    <div>
+        <label asp-for="Hora"></label>
+        <input asp-for="Hora" type="time" />
+    </div>
+    <div>
+        <label asp-for="Doctor"></label>
+        <input asp-for="Doctor" />
+    </div>
+    <div>
+        <label asp-for="Motivo"></label>
+        <textarea asp-for="Motivo"></textarea>
+    </div>
+    <button type="submit">Guardar Cita</button>
+</form>

@@ -1,0 +1,30 @@
+@model Hospital_Final.Models.Paciente
+
+<h2>Registrar Paciente</h2>
+
+<form asp-action="Create">
+    <div>
+        <label asp-for="Nombre"></label>
+        <input asp-for="Nombre" />
+    </div>
+    <div>
+        <label asp-for="Apellido"></label>
+        <input asp-for="Apellido" />
+    </div>
+    <div>
+        <label asp-for="Edad"></label>
+        <input asp-for="Edad" type="number" />
+    </div>
+    <div>
+        <label asp-for="Sexo"></label>
+        <select asp-for="Sexo">
+            <option>Masculino</option>
+            <option>Femenino</option>
+        </select>
+    </div>
+    <div>
+        <label asp-for="Diagnostico"></label>
+        <textarea asp-for="Diagnostico"></textarea>
+    </div>
+    <button type="submit">Guardar</button>
+</form>

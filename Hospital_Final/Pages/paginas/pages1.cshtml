@@ -1,0 +1,64 @@
+﻿@page 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial Medico</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #007bff;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Historial Medico</h2>
+
+        <!-- Tabla de Pacientes -->
+        <h4>Pacientes con Citas Médicas Recientes</h4>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Edad</th>
+                    <th>DNI</th>
+                    <th>Teléfono</th>
+                    <th>Última Cita</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Juan Pérez</td><td>45 años</td><td>12345678</td><td>+503 7012-3456</td><td>2024-01-10</td></tr>
+                <tr><td>María Gómez</td><td>52 años</td><td>87654321</td><td>+503 7256-7890</td><td>2024-02-15</td></tr>
+                <tr><td>Carlos López</td><td>38 años</td><td>11223344</td><td>+503 7987-6543</td><td>2024-03-05</td></tr>
+                <tr><td>Ana Martínez</td><td>29 años</td><td>55667788</td><td>+503 7456-1234</td><td>2024-04-12</td></tr>
+                <tr><td>José Rodríguez</td><td>60 años</td><td>99001122</td><td>+503 7689-4321</td><td>2024-05-20</td></tr>
+                <tr><td>Luisa Fernández</td><td>34 años</td><td>33445566</td><td>+503 7123-6789</td><td>2024-06-25</td></tr>
+                <tr><td>Pedro Castillo</td><td>47 años</td><td>77889900</td><td>+503 7564-2345</td><td>2024-07-30</td></tr>
+                <tr><td>Gabriela Torres</td><td>50 años</td><td>22334455</td><td>+503 7312-8765</td><td>2024-08-10</td></tr>
+                <tr><td>Ricardo Méndez</td><td>41 años</td><td>66778899</td><td>+503 7890-1234</td><td>2024-09-05</td></tr>
+                <tr><td>Paola Ramírez</td><td>36 años</td><td>11224488</td><td>+503 7456-9876</td><td>2024-10-14</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

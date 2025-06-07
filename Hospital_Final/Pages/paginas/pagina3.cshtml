@@ -1,0 +1,140 @@
+﻿@page
+@model HH.Pages.paginas.pagina3Model
+
+@{
+    ViewData["Title"] = "Registro de Pacientes";
+}
+
+<h2>Registro de Pacientes</h2>
+
+<form id="pacienteForm" class="form-container">
+    <label for="Nombres">Nombres:</label>
+    <input type="text" id="Nombres" name="Nombres" required />
+
+    <label for="Apellidos">Apellidos:</label>
+    <input type="text" id="Apellidos" name="Apellidos" required />
+
+    <label for="Edad">Edad:</label>
+    <input type="number" id="Edad" name="Edad" required />
+
+    <label for="Sexo">Sexo:</label>
+    <select id="Sexo" name="Sexo" required>
+        <option value="Masculino">Masculino</option>
+        <option value="Femenino">Femenino</option>
+    </select>
+
+    <label for="Diagnostico">Diagnóstico:</label>
+    <textarea id="Diagnostico" name="Diagnostico" required></textarea>
+
+    <input type="hidden" id="indiceEditar" value="-1" />
+
+    <div class="button-group">
+        <button type="button" class="btn agregar" onclick="agregarOEditarPaciente()">Guardar</button>
+        <button type="button" class="btn cancelar" onclick="cancelarEdicion()">Cancelar</button>
+    </div>
+</form>
+
+<h2>Lista de Pacientes</h2>
+<button id="toggleTablaBtn" class="btn toggle">Ver Tabla</button>
+
+<div id="tablaContainer" style="display: none;">
+    <table id="tablaPacientes" border="1">
+        <thead>
+            <tr>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Edad</th>
+                <th>Sexo</th>
+                <th>Diagnóstico</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<style>
+    .form-container {
+        width: 50%;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+    }
+
+    label {
+        display: block;
+        margin-top: 10px;
+    }
+
+    input, select, textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .button-group {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+    }
+
+    .btn {
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .agregar {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .cancelar {
+        background-color: #757575;
+        color: white;
+    }
+
+    .editar {
+        background-color: #FFC107;
+        color: white;
+    }
+
+    .eliminar {
+        background-color: #F44336;
+        color: white;
+    }
+
+    .toggle {
+        display: block;
+        margin: 10px auto;
+        background-color: #008CBA;
+        color: white;
+    }
+
+    table {
+        width: 80%;
+        margin: auto;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>
+
+
+<script src="/js/resgistropacientepagina3.js"></script>
+<script src="/js/VerOcultatTablaPagina3.js"></script>
